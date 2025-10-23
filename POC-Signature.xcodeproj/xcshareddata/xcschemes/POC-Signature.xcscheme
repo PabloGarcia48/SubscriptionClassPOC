@@ -50,9 +50,6 @@
             ReferencedContainer = "container:POC-Signature.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <StoreKitConfigurationFileReference
-         identifier = "../../POC-Signature/Plano_Assinatura.storekit">
-      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

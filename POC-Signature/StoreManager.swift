@@ -16,7 +16,7 @@ class StoreManager: ObservableObject {
     @Published var isSubscribed = false
 
     // Mesmo ID do produto, tanto local quanto na App Store Connect
-    let productIDs = ["com.POC_SignatureApp.premium.monthly.local"]
+    let productIDs = [""]
     
     // MARK: - Inicializador
     init() {
@@ -24,37 +24,13 @@ class StoreManager: ObservableObject {
     }
 
     // MARK: - Buscar produtos
-    func fetchProducts() async {
-        do {
-            let products = try await Product.products(for: productIDs)
-            subscriptions = products
-            print("Produtos retornados:" , products.count)
-            await updateCurrentEntitlement()
-        } catch {
-            print("Erro ao buscar produtos: \(error.localizedDescription)")
-        }
+    func fetchProducts() {
+
     }
 
     // MARK: - Comprar assinatura
-    func purchase(_ product: Product) async {
-        do {
-            let result = try await product.purchase()
+    func purchase() {
 
-            switch result {
-            case .success(let verification):
-                if let transaction = checkVerified(verification) {
-                    await transaction.finish()
-                    await updateCurrentEntitlement()
-                }
-
-            case .userCancelled:
-                print("Compra cancelada pelo usuário.")
-            default:
-                print("Compra não concluída.")
-            }
-        } catch {
-            print("Erro na compra: \(error.localizedDescription)")
-        }
     }
 
     // MARK: - Atualizar status atual
